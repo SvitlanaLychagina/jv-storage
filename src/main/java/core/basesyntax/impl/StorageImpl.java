@@ -2,15 +2,19 @@ package core.basesyntax.impl;
 
 import core.basesyntax.Storage;
 
+import java.lang.reflect.Array;
+
 public class StorageImpl<K, V> implements Storage<K, V> {
     public static final int MAX_CAPACITY = 10;
     private K[] keys;
     private V[] values;
-    private int size = 0;
+    private int size;
 
+    @SuppressWarnings("unchecked")
     public StorageImpl() {
-        this.keys = (K[]) new Object[MAX_CAPACITY];
-        this.values = (V[]) new Object[MAX_CAPACITY];
+        keys = (K[]) new Object[MAX_CAPACITY];
+        values = (V[]) new Object[MAX_CAPACITY];
+        size = 0;
     }
 
     @Override
@@ -32,7 +36,7 @@ public class StorageImpl<K, V> implements Storage<K, V> {
 
     @Override
     public V get(K key) {
-        for (int i = 0; i < keys.length; i++) {
+        for (int i = 0; i < size; i++) {
             if (keys[i] != null && keys[i].equals(key)) {
                 return values[i];
             } else if (keys[i] == null && key == null) {
