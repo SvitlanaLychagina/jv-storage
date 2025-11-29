@@ -2,8 +2,6 @@ package core.basesyntax.impl;
 
 import core.basesyntax.Storage;
 
-import java.lang.reflect.Array;
-
 public class StorageImpl<K, V> implements Storage<K, V> {
     public static final int MAX_CAPACITY = 10;
     private K[] keys;
